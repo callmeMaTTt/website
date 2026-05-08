@@ -318,6 +318,74 @@ img { max-width: 100%; display: block; }
   color: var(--text-faint);
 }
 
+/* ---------- Cover hero (home) ---------- */
+.cover {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 80px;
+}
+
+.cover h1 {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  margin-bottom: 32px;
+}
+
+.cover .tagline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.9;
+  margin-bottom: 96px;
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+
+.scroll-cue:hover { color: var(--accent); }
+
+.scroll-cue .cue-arrow {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: currentColor;
+  position: relative;
+}
+
+.scroll-cue .cue-arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
 /* ---------- Letter (long serif intro) ---------- */
 .letter {
   margin: 80px auto 0;
@@ -825,4 +893,7 @@ img { max-width: 100%; display: block; }
   .row.reverse .row-image { order: 0; }
   .row-image { aspect-ratio: 16 / 10; }
   .row-text h2 { font-size: 28px; }
+  .cover h1 { font-size: 40px; }
+  .cover .tagline { font-size: 11px; margin-bottom: 64px; }
+  .cover { min-height: calc(100vh - 80px); padding: 60px 24px; }
 }
