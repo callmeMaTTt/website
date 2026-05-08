@@ -1,21 +1,21 @@
 ---
-title: hello, world
+title: travel young
 date: 2026-05-08
 tag: meta
-description: a first post — what this blog is for.
+description: why you should travel young
 ---
 
-welcome to my corner of the internet. this is the first post on the blog,
-written mostly to make sure the markdown pipeline works.
+The world is massive. There are 195 countries, thousands of languages and more
+coastlines, mountain ranges and back-alley food markets than any one person
+could ever see in a lifetime. And yet, most of us spend our early years within
+the same city, state or province of which we are born. 
 
-## why a blog
+The world is enormous, and you are young, and those two facts together are 
+basically an open invitation. 
 
-i wanted somewhere to put longer thoughts &mdash; the kind that don't fit
-on instagram and that get eaten by the algorithm everywhere else. expect:
+## It rewires how you see things 
 
-- short notes from runs and walks
-- whatever i'm reading or watching
-- the occasional longer essay when something's worth saying
+Everyone has a version of the world that exists 
 
 ## how to read
 
