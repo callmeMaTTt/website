@@ -21,18 +21,36 @@ import Footer from '../components/Footer.astro';
       <div class="section-head">
         <span class="section-label">trips</span>
       </div>
-      <div class="list">
-        <div class="trip-row">
-          <div class="trip-thumb"><img src="/images/grampians.jpg" alt="" /></div>
-          <span class="title">grampians national park</span>
-          <span class="tag">victoria</span>
-          <span class="date">11/2025</span>
+      <div class="card-grid">
+        <div class="trip-card">
+          <div class="img"><img src="/images/grampians.jpg" alt="" /></div>
+          <div class="body">
+            <h3>grampians</h3>
+            <div class="meta">
+              <span>victoria</span>
+              <span class="date">11/2025</span>
+            </div>
+          </div>
         </div>
-        <div class="trip-row">
-          <div class="trip-thumb"></div>
-          <span class="title">somewhere worth going</span>
-          <span class="tag">country</span>
-          <span class="date">mm/yyyy</span>
+        <div class="trip-card">
+          <div class="img"></div>
+          <div class="body">
+            <h3>next trip</h3>
+            <div class="meta">
+              <span>country</span>
+              <span class="date">mm/yyyy</span>
+            </div>
+          </div>
+        </div>
+        <div class="trip-card">
+          <div class="img"></div>
+          <div class="body">
+            <h3>another</h3>
+            <div class="meta">
+              <span>country</span>
+              <span class="date">mm/yyyy</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
