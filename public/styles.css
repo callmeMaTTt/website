@@ -763,6 +763,64 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 
+/* ---------- Trip row (image + text) ---------- */
+.trip-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.trip-row:last-child { border-bottom: 0; }
+.trip-row:hover { background: var(--surface-hover); }
+
+.trip-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.trip-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.03);
+}
+
+.trip-row .title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+.trip-row .tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.trip-row .date {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
 /* ---------- Timeline (about) ---------- */
 .timeline-head {
   display: grid;
@@ -969,6 +1027,9 @@ img { max-width: 100%; display: block; }
   .nav-links a span { display: none; }
   .list-row { grid-template-columns: 36px 1fr auto; }
   .list-row .tag { display: none; }
+  .trip-row { grid-template-columns: 48px 1fr auto; gap: 12px; }
+  .trip-row .tag { display: none; }
+  .trip-thumb { width: 44px; height: 44px; }
   .banner { height: 220px; }
   .title-card h1 { font-size: 52px; }
   .letter { font-size: 18px; }
