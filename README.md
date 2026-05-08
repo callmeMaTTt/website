@@ -1,67 +1,78 @@
 # matt marinic — personal site
 
-A minimal personal site with a warm, nostalgic European-summer feel — Fraunces serif headlines, terracotta accents, subtle film grain, and photographic banners. Vanilla HTML / CSS / JS, no build step.
+Personal site built with [Astro](https://astro.build). Warm minimal aesthetic, dark by default, terracotta accents, Fraunces serif headlines.
 
-## Edit content
+## Project structure
 
-All pages are plain HTML — open and edit:
-
-- `index.html` — home / hero
-- `2026.html` — current-year log
-- `about.html` — about + timeline
-- `blog.html` — blog index
-- `contact.html` — contact links
-
-Shared styles live in `styles.css`, theme toggle in `script.js`.
-
-## Swap in your own photos
-
-Each page has a `<div class="banner">` near the top using a placeholder gradient. Replace it with a real image:
-
-```html
-<!-- before -->
-<div class="banner banner-terracotta"></div>
-
-<!-- after -->
-<div class="banner"><img src="/images/2026.jpg" alt=""></div>
+```
+src/
+  layouts/Base.astro       # html shell + nav
+  components/
+    Nav.astro              # top navigation
+    Footer.astro           # shared footer
+  pages/
+    index.astro            # home (cover hero)
+    2026.astro             # this year's log
+    about.astro
+    blog.astro             # blog index — auto-built from posts/
+    contact.astro
+    posts/[...slug].astro  # renders an individual post
+  content/
+    posts/                 # markdown blog posts go here
+  content.config.ts        # post frontmatter schema
+public/
+  styles.css               # all styles
+  script.js                # theme toggle
 ```
 
-Drop your photos into an `images/` folder (create it). For the warm, faded look, photos with these subjects work well:
+## Writing a new blog post
 
-- coffee + newspaper on a cafe table
-- a stone village street at golden hour
-- the mediterranean from a balcony
-- linen, espresso cups, vespas, sun-bleached walls
+1. Create a markdown file in `src/content/posts/`, e.g. `src/content/posts/my-post.md`:
 
-The CSS automatically applies a slight desaturation + a soft dark gradient at the bottom so any text overlay stays legible.
+   ```markdown
+   ---
+   title: my post title
+   date: 2026-05-08
+   tag: writing
+   description: optional one-line description
+   ---
 
-For the hero portrait (`index.html`), replace `<div class="photo-frame">replace with photo</div>` with `<img src="/images/me.jpg" alt="">`.
+   write your post here in plain markdown.
 
-## Customize the palette
+   ## subheadings work
 
-In `styles.css` the warm palette lives at the top under `:root`:
+   - lists work
+   - **bold** and *italic* work
+   - [links](https://example.com) work too
+   ```
 
-- `--terracotta` — primary accent
-- `--olive` / `--dusty-blue` / `--cream` — supporting tones
-- `--bg` — warm near-black background
+2. Push to GitHub. The blog index updates automatically and Cloudflare redeploys.
 
-Light mode (cream paper) lives under `[data-theme="light"]`.
+The filename becomes the URL slug: `my-post.md` → `/posts/my-post`.
 
 ## Run locally
 
 ```sh
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-then visit <http://localhost:8000>.
+Open <http://localhost:4321>.
 
-## Deploy on Cloudflare Pages (free)
+## Build
 
-1. Push this repo to GitHub.
-2. <https://dash.cloudflare.com/> → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-3. Pick this repo and the branch.
-4. **Build settings**: leave the build command **empty** and set the output directory to `/` — no build step.
-5. **Save and Deploy** → free `*.pages.dev` URL with HTTPS.
-6. Custom domain: **Custom domains** → enter your domain. Cloudflare handles SSL.
+```sh
+npm run build         # outputs to dist/
+npm run preview       # preview the built site
+```
 
-Every push to the deployed branch auto-deploys.
+## Deploy
+
+Cloudflare auto-builds on every push to the deployed branch (config in `wrangler.jsonc`). Build command is `npm run build`, output is `./dist`.
+
+## Customizing
+
+- **Edit a page** — open the corresponding `.astro` file in `src/pages/`.
+- **Edit nav/footer** — `src/components/Nav.astro` and `Footer.astro`.
+- **Theme & palette** — `public/styles.css` (top of file under `:root`).
+- **Swap a banner gradient for a real photo** — replace `<div class="banner banner-terracotta"></div>` with `<div class="banner"><img src="/images/yourphoto.jpg" alt="" /></div>` and drop the file in `public/images/`.

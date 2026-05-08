@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const toRoman = (n: number): string => {
+  const numerals: [number, string][] = [
+    [10, 'x'], [9, 'ix'], [5, 'v'], [4, 'iv'], [1, 'i'],
+  ];
+  let result = '';
+  let num = n;
+  for (const [value, symbol] of numerals) {
+    while (num >= value) {
+      result += symbol;
+      num -= value;
+    }
+  }
+  return result;
+};
+
+const formatDate = (d: Date) => {
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  return `${day}/${month}/${d.getFullYear()}`;
+};
+---
+
+<Base
+  title="blog — matt marinic"
+  description="thoughts, notes, and writing by matt marinic."
+>
+  <main class="wrap page">
+    <!-- swap with: <div class="banner"><img src="/images/blog.jpg" alt=""></div> -->
+    <div class="banner banner-sea"></div>
+
+    <span class="eyebrow">read</span>
+    <h1 class="page-title">blog</h1>
+    <p class="page-lead">thoughts, notes, and dispatches from the in-between.</p>
+
+    <section class="section" style="margin-top: 32px;">
+      <div class="list">
+        {posts.length === 0 && (
+          <div class="list-row">
+            <span class="num">i</span>
+            <span class="title">no posts yet — check back soon.</span>
+            <span></span>
+            <span class="date"></span>
+          </div>
+        )}
+        {posts.map((post, idx) => (
+          <a href={`/posts/${post.id}`} class="list-row">
+            <span class="num">{toRoman(idx + 1)}</span>
+            <span class="title">{post.data.title}</span>
+            <span class="tag">{post.data.tag ?? ''}</span>
+            <span class="date">{formatDate(post.data.date)}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Base>

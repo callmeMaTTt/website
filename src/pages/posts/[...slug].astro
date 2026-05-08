@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+---
+
+<Base
+  title={`${post.data.title} — matt marinic`}
+  description={post.data.description ?? post.data.title}
+>
+  <main class="wrap page">
+    <p class="page-lead" style="margin-bottom: 8px;">
+      <a href="/blog">&larr; back to blog</a>
+    </p>
+    {post.data.tag && <span class="eyebrow">{post.data.tag}</span>}
+    <h1 class="page-title">{post.data.title}</h1>
+    <p class="page-lead" style="font-family: var(--font-mono); font-size: 13px;">
+      {formatDate(post.data.date)}
+    </p>
+
+    <article class="prose" style="margin-top: 40px;">
+      <Content />
+    </article>
+
+    <Footer />
+  </main>
+</Base>

@@ -4,6 +4,10 @@ node_modules/
 .idea/
 *.log
 
+# astro build output + cache
+dist/
+.astro/
+
 # wrangler files
 .wrangler
 .dev.vars*

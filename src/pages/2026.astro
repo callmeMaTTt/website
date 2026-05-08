@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="2026 — matt marinic"
+  description="what matt is building, learning, and doing in 2026."
+>
+  <main class="wrap page">
+    <!-- swap with: <div class="banner"><img src="/images/2026.jpg" alt=""></div> -->
+    <div class="banner banner-terracotta"></div>
+
+    <span class="eyebrow">the year</span>
+    <h1 class="page-title">2026</h1>
+    <p class="page-lead">
+      a running log of what i'm building, learning, and living through this year.
+    </p>
+    <p class="page-lead">
+      want to see other years? <a href="#archive">check the archive</a>
+    </p>
+
+    <section class="section">
+      <div class="section-head">
+        <span class="section-label">projects</span>
+      </div>
+      <div class="card-grid">
+        <a href="#" class="card">
+          <div class="icon terracotta">i</div>
+          <h3>project one</h3>
+          <p>a short description of what this project does</p>
+        </a>
+        <a href="#" class="card">
+          <div class="icon olive">ii</div>
+          <h3>project two</h3>
+          <p>a short description of what this project does</p>
+        </a>
+        <a href="#" class="card">
+          <div class="icon blue">iii</div>
+          <h3>project three</h3>
+          <p>a short description of what this project does</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <span class="section-label">mentions &amp; appearances</span>
+      </div>
+      <p class="page-lead">appeared in <a href="#">some podcast or article</a></p>
+      <p class="page-lead">spoke at <a href="#">some event</a></p>
+    </section>
+
+    <section class="section" id="archive">
+      <div class="section-head">
+        <span class="section-label">archive</span>
+      </div>
+      <div class="list">
+        <a href="#" class="list-row">
+          <span class="num">2025</span>
+          <span class="title">last year — what i did in 2025</span>
+          <span></span>
+          <span class="date">archive</span>
+        </a>
+        <a href="#" class="list-row">
+          <span class="num">2024</span>
+          <span class="title">2024 in review</span>
+          <span></span>
+          <span class="date">archive</span>
+        </a>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Base>

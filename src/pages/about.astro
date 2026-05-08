@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="about — matt marinic" description="about matt marinic.">
+  <main class="wrap page">
+    <!-- swap with: <div class="banner"><img src="/images/about.jpg" alt=""></div> -->
+    <div class="banner banner-sunset"></div>
+
+    <span class="eyebrow">a brief history</span>
+    <h1 class="page-title">about <span class="meta">age 00.000000000</span></h1>
+
+    <div class="prose" style="margin-top: 16px;">
+      <p>i'm matt &mdash; <em>this is the part where i tell you about myself</em>.</p>
+      <p>
+        replace this with a paragraph or two on what you do, what you're working on,
+        and what you care about. keep it warm, a little romantic, and unhurried.
+      </p>
+      <p>
+        outside of work i enjoy <span class="accent">long walks</span>,
+        <span class="accent">good coffee</span>, and
+        <span class="accent">slow afternoons</span>.
+      </p>
+    </div>
+
+    <section class="section">
+      <div class="timeline-head">
+        <span>age</span>
+        <span>highlight</span>
+      </div>
+      <div class="list">
+        <div class="tl-row">
+          <span class="age">0</span>
+          <div>
+            <h4>born somewhere</h4>
+            <p>a one-line note about it</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="age">18</span>
+          <div>
+            <h4>graduated high school</h4>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="age">22</span>
+          <div>
+            <h4>started working at a place</h4>
+            <p>doing a thing</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <span class="age">25</span>
+          <div>
+            <h4>started this site</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Base>
