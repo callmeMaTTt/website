@@ -5,17 +5,13 @@ tag: meta
 description: why you should travel young
 ---
 
-The world is massive. There are 195 countries, thousands of languages and more
-coastlines, mountain ranges and back-alley food markets than any one person
-could ever see in a lifetime. And yet, most of us spend our early years within
-the same city, state or province of which we are born. 
+I grew up travelling. Korea, Taiwan, China and Canada with my Dad, Europe, USA, Vietnam with my Mum. I loved it. But I was always craving a particular kind of trip, one where there was no planning, no list of places to visit and no return date.
 
-The world is enormous, and you are young, and those two facts together are 
-basically an open invitation. 
+So at 18, I booked a one-way flight to Kuala Lumpur, Malaysia. 
 
-## It rewires how you see things 
+...to be continued
 
-Everyone has a version of the world that exists 
+
 
 ## how to read
 
