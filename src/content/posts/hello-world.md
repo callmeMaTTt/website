@@ -9,8 +9,9 @@ I grew up travelling. Korea, Taiwan, China and Canada with my Dad, Europe, USA, 
 
 So at 18, I booked a one-way flight to Kuala Lumpur, Malaysia. 
 
-...to be continued
+Here are some of the things I've learnt on my travels.
 
+## travel for the people
 
 
 ## how to read
