@@ -1,0 +1,15 @@
+[
+  { "id": "president",        "name": "Name Surname", "role": "President",              "group": "executive" },
+  { "id": "vice-president",   "name": "Name Surname", "role": "Vice President",         "group": "executive" },
+  { "id": "treasurer",        "name": "Name Surname", "role": "Treasurer",              "group": "executive" },
+  { "id": "secretary",        "name": "Name Surname", "role": "Secretary",              "group": "executive" },
+
+  { "id": "ops-1",            "name": "Name Surname", "role": "Co-Director of Operations",   "group": "directors" },
+  { "id": "ops-2",            "name": "Name Surname", "role": "Co-Director of Operations",   "group": "directors" },
+  { "id": "sponsorship-1",    "name": "Name Surname", "role": "Co-Director of Sponsorships", "group": "directors" },
+  { "id": "sponsorship-2",    "name": "Name Surname", "role": "Co-Director of Sponsorships", "group": "directors" },
+  { "id": "marketing-1",      "name": "Name Surname", "role": "Co-Director of Marketing",    "group": "directors" },
+  { "id": "marketing-2",      "name": "Name Surname", "role": "Co-Director of Marketing",    "group": "directors" },
+  { "id": "education",        "name": "Name Surname", "role": "Director of Education",       "group": "directors" },
+  { "id": "careers",          "name": "Name Surname", "role": "Director of Careers",         "group": "directors" }
+]

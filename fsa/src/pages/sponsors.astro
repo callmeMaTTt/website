@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact, sponsorTiers, stats } from '../data/site';
+
+const reach = [
+  { t: 'Direct cohort access', b: 'Speak to a self-selected room of finance students a year before they enter the graduate market.' },
+  { t: 'Branded event presence', b: 'Naming, booths and speaking slots across our careers evenings and flagship nights.' },
+  { t: 'Year-round channels', b: 'Opportunities distributed to the member list, plus placement across our social channels.' },
+  { t: 'Targeted recruitment', b: 'Insight programmes and applications surfaced to members before general release.' },
+];
+---
+
+<Base
+  title="Partners"
+  description="Partner with the Finance Students' Association at the University of Melbourne — reach finance students a year before they enter the graduate market."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Partners</span>
+    <h1 class="d2">Meet your next graduate intake early.</h1>
+    <p class="lede">
+      Our partners fund the programme that makes FSA worth joining — and in
+      return get sustained, credible access to the students most likely to
+      apply to them.
+    </p>
+    <div class="hero-cta" style="margin-top:26px;">
+      <a href={`mailto:${contact.sponsorship}?subject=FSA%20partnership%20enquiry`} class="btn btn-brass">
+        Request the prospectus <span class="arw">&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="shell">
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <h2 class="d2" style="margin-bottom:34px;">Our partners</h2>
+      {sponsorTiers.map((tier) => (
+        <div class="sponsor-tier reveal">
+          <span class="eyebrow">{tier.tier}</span>
+          <div class="sponsors">
+            {tier.items.map((s) => (
+              <a class="sponsor" href={s.href ?? '#'}>
+                {s.logo
+                  ? <img src={s.logo} alt={s.name} loading="lazy" decoding="async" />
+                  : <span class="sponsor-name">{s.name}</span>}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-tight section-alt">
+    <div class="shell">
+      <h2 class="d2" style="margin-bottom:30px;">What a partnership includes</h2>
+      <div class="grid g-4">
+        {reach.map((r) => (
+          <article class="card reveal">
+            <h3 class="d3">{r.t}</h3>
+            <p>{r.b}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="cta" style="margin-top:44px;">
+        <div class="stack-14">
+          <span class="eyebrow">Sponsorship</span>
+          <h2 class="d2">Let&rsquo;s talk about the year ahead.</h2>
+          <p class="lede" style="max-width:52ch;">
+            Our sponsorship directors will send through the current prospectus
+            with tiers, deliverables and the events calendar.
+          </p>
+        </div>
+        <div class="hero-cta">
+          <a href={`mailto:${contact.sponsorship}?subject=FSA%20partnership%20enquiry`} class="btn btn-brass">
+            {contact.sponsorship} <span class="arw">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

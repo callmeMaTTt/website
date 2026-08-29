@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Social from '../components/Social.astro';
+import { site, contact } from '../data/site';
+---
+
+<Base
+  title="Contact"
+  description="Get in touch with the Finance Students' Association at the University of Melbourne."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Contact</span>
+    <h1 class="d2">Get in touch.</h1>
+    <p class="lede">
+      Questions about membership, an event, or a partnership — whichever it is,
+      one of these will reach the right person.
+    </p>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="shell">
+      <div class="grid g-2" style="align-items:start;">
+        <div>
+          <div class="contact-item">
+            <h3>General enquiries</h3>
+            <p>Membership, events, and anything else about the club.</p>
+            <p style="margin-top:8px;">
+              <a href={`mailto:${contact.general}`} class="tlink">
+                {contact.general} <span class="arw">&rarr;</span>
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Sponsorship &amp; partnerships</h3>
+            <p>For firms interested in partnering with FSA this year.</p>
+            <p style="margin-top:8px;">
+              <a href={`mailto:${contact.sponsorship}`} class="tlink">
+                {contact.sponsorship} <span class="arw">&rarr;</span>
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Find us</h3>
+            <p>
+              {site.name}, c/- UMSU, {site.university}, Parkville VIC 3010.
+            </p>
+          </div>
+
+          <div style="padding-top:26px;">
+            <h3 class="d3" style="margin-bottom:14px;">Follow along</h3>
+            <Social />
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="d3" style="margin-bottom:6px;">Send us a message</h3>
+          <p class="muted" style="font-size:0.9rem; margin-bottom:22px;">
+            This opens your email client with the details filled in.
+          </p>
+
+          <form class="stack-14" action={`mailto:${contact.general}`} method="post" enctype="text/plain">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-brass" style="align-self:flex-start;">
+              Send <span class="arw">&rarr;</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

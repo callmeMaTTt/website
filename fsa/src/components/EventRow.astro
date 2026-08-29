@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  time?: string;
+  location?: string;
+  summary: string;
+  tags?: string[];
+  href: string;
+  upcoming?: boolean;
+}
+const { title, date, time, location, summary, tags = [], href, upcoming } = Astro.props;
+
+const day = date.toLocaleDateString('en-AU', { day: '2-digit', timeZone: 'UTC' });
+const mon = date.toLocaleDateString('en-AU', { month: 'short', timeZone: 'UTC' });
+const meta = [time, location].filter(Boolean).join('  ·  ');
+---
+
+<a class="evt reveal" href={href}>
+  <div class="evt-date">
+    <b>{day}</b>
+    <span>{mon}</span>
+  </div>
+
+  <div class="evt-body">
+    <h3 class="d3">{title}</h3>
+    {meta && <p class="muted" style="font-size:0.85rem;">{meta}</p>}
+    <p>{summary}</p>
+    {(tags.length > 0 || upcoming) && (
+      <div class="evt-tags">
+        {upcoming && <span class="tag tag-live">Registrations open</span>}
+        {tags.map((t) => <span class="tag">{t}</span>)}
+      </div>
+    )}
+  </div>
+
+  <span class="evt-go" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  </span>
+</a>

@@ -1,0 +1,156 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Stage from '../components/Stage.astro';
+import SectionHead from '../components/SectionHead.astro';
+import EventRow from '../components/EventRow.astro';
+import { site, stats, pillars, sponsorTiers } from '../data/site';
+
+const now = new Date();
+const upcoming = (await getCollection('events', (e) => e.data.published))
+  .filter((e) => e.data.date >= now)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+  .slice(0, 3);
+
+const partners = sponsorTiers.flatMap((t) => t.items).slice(0, 8);
+---
+
+<Base description={site.tagline}>
+  <!-- ---------- hero ---------- -->
+  <section class="hero">
+    <div class="shell hero-in">
+      <div class="hero-copy">
+        <span class="eyebrow">{site.university} &middot; Est. {site.founded}</span>
+
+        <h1 class="d1">Where finance study becomes a <em>career</em>.</h1>
+
+        <p class="lede">
+          FSA connects finance students across every year level to the firms,
+          the coursework and the people that shape what comes next — through
+          insight evenings, revision workshops and a cohort worth knowing.
+        </p>
+
+        <div class="hero-cta">
+          <a href="/join" class="btn btn-brass">
+            Become a member <span class="arw">&rarr;</span>
+          </a>
+          <a href="/events" class="btn btn-ghost">See what&rsquo;s on</a>
+        </div>
+
+        <div class="hero-meta">
+          <span>Open to all faculties</span>
+          <span>UMSU affiliated</span>
+          <span>Student run since {site.founded}</span>
+        </div>
+      </div>
+
+      <!-- Drop the club's 3D asset inside <Stage> and it replaces the mark. -->
+      <Stage />
+    </div>
+  </section>
+
+  <!-- ---------- stat band ---------- -->
+  <section class="shell">
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat">
+          <b>{s.value}</b>
+          <span>{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ---------- pillars ---------- -->
+  <section class="section">
+    <div class="shell">
+      <SectionHead
+        eyebrow="What we do"
+        title="Three things, done properly."
+        lede="FSA runs on a simple premise: a finance degree is worth more when it comes with the industry context, the study support and the network that a lecture theatre can't provide."
+        href="/about"
+        hrefLabel="More about FSA"
+      />
+
+      <div class="grid g-3">
+        {pillars.map((p) => (
+          <article class="card card-hover reveal">
+            <span class="card-num">{p.n}</span>
+            <h3 class="d3">{p.title}</h3>
+            <p>{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- upcoming events ---------- -->
+  {upcoming.length > 0 && (
+    <section class="section section-alt">
+      <div class="shell">
+        <SectionHead
+          eyebrow="What's on"
+          title="Coming up"
+          lede="Members are seated first at every event. Dates and venues are confirmed here before they go anywhere else."
+          href="/events"
+          hrefLabel="All events"
+        />
+
+        <div>
+          {upcoming.map((e) => (
+            <EventRow
+              title={e.data.title}
+              date={e.data.date}
+              time={e.data.time}
+              location={e.data.location}
+              summary={e.data.summary}
+              tags={e.data.tags}
+              href={`/events/${e.id}`}
+              upcoming
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ---------- partners ---------- -->
+  <section class="section">
+    <div class="shell">
+      <SectionHead
+        eyebrow="Our partners"
+        title="Backed by the firms that hire our members."
+        lede="Partnering with FSA puts your brand in front of a self-selected cohort of finance students, a year before they hit the graduate market."
+        href="/sponsors"
+        hrefLabel="Partner with us"
+      />
+
+      <div class="sponsors reveal">
+        {partners.map((p) => (
+          <a class="sponsor" href={p.href ?? '#'}>
+            <span class="sponsor-name">{p.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CTA ---------- -->
+  <section class="section-tight">
+    <div class="shell">
+      <div class="cta reveal">
+        <div class="stack-14">
+          <span class="eyebrow">Membership</span>
+          <h2 class="d2">One membership. The whole year.</h2>
+          <p class="lede" style="max-width:52ch;">
+            Priority seating at every event, access to the revision programme,
+            and first sight of the opportunities our partners send our way.
+          </p>
+        </div>
+        <div class="hero-cta">
+          <a href="/join" class="btn btn-brass">Join FSA <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../data/site';
+
+const benefits = [
+  { t: 'Priority seating', b: 'Members are ticketed before general admission at every event, including the flagship careers evening.' },
+  { t: 'The revision programme', b: 'Workshops and study groups across the core finance subjects, run before each exam block.' },
+  { t: 'Partner opportunities', b: 'Internships, insight programmes and applications our partners send to members first.' },
+  { t: 'Member pricing', b: 'Reduced rates on ticketed events and the annual ball.' },
+  { t: 'The network', b: 'A cohort across every year level, plus alumni already working in the industry.' },
+  { t: 'Committee eligibility', b: 'Membership is the entry point for running at the AGM.' },
+];
+---
+
+<Base
+  title="Join FSA"
+  description="Membership of the Finance Students' Association at the University of Melbourne — priority event access, the revision programme and partner opportunities."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Membership</span>
+    <h1 class="d2">One membership. The whole year.</h1>
+    <p class="lede">
+      Membership runs for the full academic year and covers every event on the
+      calendar. Current University of Melbourne students join as Student
+      Members; everyone else is welcome as an Associate Member.
+    </p>
+    <div class="hero-cta" style="margin-top:26px;">
+      <a href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/6773/"
+         class="btn btn-brass" rel="noopener noreferrer" target="_blank">
+        Join via UMSU <span class="arw">&rarr;</span>
+      </a>
+      <a href={`mailto:${contact.general}`} class="btn btn-ghost">Ask a question</a>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="shell">
+      <div class="grid g-3">
+        {benefits.map((x) => (
+          <article class="card card-hover reveal">
+            <h3 class="d3">{x.t}</h3>
+            <p>{x.b}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight section-alt">
+    <div class="shell shell-narrow">
+      <h2 class="d2" style="margin-bottom:26px;">How to join</h2>
+      <div>
+        <div class="contact-item">
+          <h3>1. Open the UMSU clubs listing</h3>
+          <p>FSA appears as <strong>Finance Students&rsquo; Association</strong> in the UMSU clubs directory.</p>
+        </div>
+        <div class="contact-item">
+          <h3>2. Pick your membership type</h3>
+          <p>
+            Current University of Melbourne students add the <strong>Student Member</strong>
+            option to their basket. Everyone else selects <strong>Associate Member</strong>.
+          </p>
+        </div>
+        <div class="contact-item">
+          <h3>3. Check out</h3>
+          <p>
+            You&rsquo;ll receive confirmation from UMSU, and we&rsquo;ll add you to the
+            member mailing list before the next event goes on sale.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

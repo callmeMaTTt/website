@@ -1,0 +1,15 @@
+/about-fsa            /about      301
+/our-people           /people     301
+/committee-members    /people     301
+/past-events          /events     301
+/upcoming-events      /events     301
+/events-1             /events     301
+/join-fsa             /join       301
+/membership           /join       301
+/join-the-commitee    /committee  301
+/join-the-committee   /committee  301
+/contact-us           /contact    301
+/sponsors             /sponsors   301
+/our-sponsors         /sponsors   301
+/partners             /sponsors   301
+/event-details/*      /events     301

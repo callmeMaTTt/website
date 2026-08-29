@@ -1,0 +1,107 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import '../styles/site.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = site.tagline,
+} = Astro.props;
+
+const fullTitle = title ? `${title} — ${site.short} ${site.university}` : `${site.name} — ${site.university}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1020" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fonts are self-hosted and preloaded: no third-party connection, no
+         render-blocking stylesheet request. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Set the theme before first paint so there is no flash. -->
+    <script is:inline>
+      (function () {
+        try {
+          var s = localStorage.getItem('fsa-theme');
+          var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = s || (d ? 'dark' : 'light');
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script is:inline>
+      // ~700 bytes: theme toggle, mobile menu, sticky-header border.
+      (function () {
+        var root = document.documentElement;
+
+        var toggle = document.querySelector('[data-theme-toggle]');
+        if (toggle) {
+          toggle.addEventListener('click', function () {
+            var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+            root.dataset.theme = next;
+            try { localStorage.setItem('fsa-theme', next); } catch (e) {}
+          });
+        }
+
+        var menu = document.querySelector('[data-menu]');
+        var nav = document.querySelector('[data-nav]');
+        if (menu && nav) {
+          menu.addEventListener('click', function () {
+            var open = nav.hasAttribute('data-open');
+            if (open) nav.removeAttribute('data-open');
+            else nav.setAttribute('data-open', '');
+            menu.setAttribute('aria-expanded', String(!open));
+          });
+        }
+
+        var hdr = document.querySelector('[data-hdr]');
+        if (hdr) {
+          var onScroll = function () {
+            if (window.scrollY > 8) hdr.setAttribute('data-stuck', '');
+            else hdr.removeAttribute('data-stuck');
+          };
+          onScroll();
+          window.addEventListener('scroll', onScroll, { passive: true });
+        }
+      })();
+    </script>
+  </body>
+</html>

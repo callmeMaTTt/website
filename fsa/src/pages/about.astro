@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { site, stats, pillars } from '../data/site';
+---
+
+<Base
+  title="About"
+  description="FSA is a student club at the University of Melbourne connecting finance students to industry, to their coursework, and to each other."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">About FSA</span>
+    <h1 class="d2">A finance degree is only half of it.</h1>
+    <p class="lede">
+      The {site.name} was founded in {site.founded} on a straightforward idea:
+      that the distance between a finance subject and a finance career is
+      mostly made of context, and that students are well placed to close it
+      for each other.
+    </p>
+  </section>
+
+  <section class="shell">
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat"><b>{s.value}</b><span>{s.label}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="grid g-2" style="align-items:start;">
+        <div class="prose">
+          <h2 class="d3">What we&rsquo;re for</h2>
+          <p>
+            FSA exists to build the bridge between tertiary study and
+            professional application. In practice that means three things: giving
+            students a real picture of what finance work looks like before they
+            commit to a graduate pipeline, supporting the coursework that gets
+            them there, and creating a cohort that stays useful long after
+            graduation.
+          </p>
+          <p>
+            We are open to every student at the {site.university}, in any
+            faculty and any year level. Some of our most active members are
+            first-years still deciding on a major; others are penultimate
+            students deep in application season.
+          </p>
+
+          <h2 class="d3">How we run</h2>
+          <p>
+            FSA is entirely student run and UMSU affiliated. The committee is
+            elected each year at our AGM, and every event on the calendar is
+            planned, sold and staffed by students. Our partners fund the
+            programme; our members shape it.
+          </p>
+          <blockquote>
+            Constructing and bringing together a mutually-assisting community
+            within finance students.
+          </blockquote>
+        </div>
+
+        <div class="stack-22">
+          {pillars.map((p) => (
+            <article class="card reveal">
+              <span class="card-num">{p.n}</span>
+              <h3 class="d3">{p.title}</h3>
+              <p>{p.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight section-alt">
+    <div class="shell">
+      <SectionHead
+        eyebrow="Get involved"
+        title="Two ways in."
+        lede="Join as a member for the events and the study programme, or run for committee and build the thing itself."
+      />
+      <div class="grid g-2">
+        <article class="card card-hover">
+          <h3 class="d3">Become a member</h3>
+          <p>Priority seating, the revision programme, and partner opportunities first.</p>
+          <p style="margin-top:16px;"><a href="/join" class="tlink">Membership <span class="arw">&rarr;</span></a></p>
+        </article>
+        <article class="card card-hover">
+          <h3 class="d3">Join the committee</h3>
+          <p>Applications open once a year, after the AGM. No prior club experience needed.</p>
+          <p style="margin-top:16px;"><a href="/committee" class="tlink">Committee roles <span class="arw">&rarr;</span></a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>

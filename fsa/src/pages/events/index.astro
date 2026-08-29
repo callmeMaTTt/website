@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EventRow from '../../components/EventRow.astro';
+
+const now = new Date();
+const all = (await getCollection('events', (e) => e.data.published));
+
+const upcoming = all
+  .filter((e) => e.data.date >= now)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+const past = all
+  .filter((e) => e.data.date < now)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base
+  title="Events"
+  description="Insight evenings, revision workshops, networking nights and socials run by the Finance Students' Association at the University of Melbourne."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Events</span>
+    <h1 class="d2">Everything we&rsquo;re running this year.</h1>
+    <p class="lede">
+      Career evenings with the firms, revision workshops before the exam block,
+      and the socials in between. Members are seated first at every one.
+    </p>
+  </section>
+
+  <section class="shell section-tight" style="padding-top:0;">
+    <h2 class="d3" style="margin-bottom:20px;">Upcoming</h2>
+    {upcoming.length > 0 ? (
+      <div>
+        {upcoming.map((e) => (
+          <EventRow
+            title={e.data.title}
+            date={e.data.date}
+            time={e.data.time}
+            location={e.data.location}
+            summary={e.data.summary}
+            tags={e.data.tags}
+            href={`/events/${e.id}`}
+            upcoming
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="card">
+        <p>
+          Nothing scheduled right now — the next semester&rsquo;s calendar drops
+          shortly. Follow us on Instagram or join as a member to hear first.
+        </p>
+      </div>
+    )}
+  </section>
+
+  {past.length > 0 && (
+    <section class="section-tight section-alt">
+      <div class="shell">
+        <h2 class="d3" style="margin-bottom:20px;">Past events</h2>
+        <div>
+          {past.map((e) => (
+            <EventRow
+              title={e.data.title}
+              date={e.data.date}
+              time={e.data.time}
+              location={e.data.location}
+              summary={e.data.summary}
+              tags={e.data.tags}
+              href={`/events/${e.id}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

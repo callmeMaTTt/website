@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  photo?: string;
+  linkedin?: string;
+}
+const { name, role, photo, linkedin } = Astro.props;
+
+const initials = name
+  .split(/\s+/)
+  .slice(0, 2)
+  .map((w) => w[0])
+  .join('')
+  .toUpperCase();
+---
+
+<div class="person reveal">
+  <div class="person-photo">
+    {photo
+      ? <img src={photo} alt={name} width="360" height="480" loading="lazy" decoding="async" />
+      : <span class="person-initials" aria-hidden="true">{initials}</span>}
+  </div>
+  <div class="stack-8">
+    <span class="person-role">{role}</span>
+    <h3>{linkedin ? <a href={linkedin} class="tlink" rel="noopener noreferrer" target="_blank">{name}</a> : name}</h3>
+  </div>
+</div>

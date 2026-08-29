@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { contact } from '../../data/site';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events', (e) => e.data.published);
+  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+
+const d = event.data.date;
+const isUpcoming = d >= new Date();
+const long = d.toLocaleDateString('en-AU', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+});
+---
+
+<Base title={event.data.title} description={event.data.summary}>
+  <article class="shell shell-narrow pagehead">
+    <a href="/events" class="tlink" style="margin-bottom:22px;">
+      <span class="arw" style="transform:rotate(180deg);">&rarr;</span> All events
+    </a>
+
+    <span class="eyebrow" style="margin-top:18px;">
+      {isUpcoming ? 'Upcoming event' : 'Past event'}
+    </span>
+    <h1 class="d2">{event.data.title}</h1>
+
+    <div class="evt-tags" style="margin-top:16px;">
+      {event.data.tags.map((t) => <span class="tag">{t}</span>)}
+    </div>
+
+    <dl style="margin-top:30px;">
+      <div class="contact-item">
+        <h3>Date</h3>
+        <p>{long}{event.data.time ? ` · ${event.data.time}` : ''}</p>
+      </div>
+      {event.data.location && (
+        <div class="contact-item">
+          <h3>Location</h3>
+          <p>{event.data.location}</p>
+        </div>
+      )}
+    </dl>
+
+    <div class="prose" style="margin-top:34px;">
+      <Content />
+    </div>
+
+    <div class="hero-cta" style="margin-top:36px;">
+      {isUpcoming
+        ? (
+          <>
+            <a href={event.data.registerUrl ?? `mailto:${contact.general}?subject=${encodeURIComponent(event.data.title)}`}
+               class="btn btn-brass">
+              Register <span class="arw">&rarr;</span>
+            </a>
+            <a href="/join" class="btn btn-ghost">Members are seated first</a>
+          </>
+        )
+        : <a href="/events" class="btn btn-ghost">See what&rsquo;s coming up</a>}
+    </div>
+  </article>
+</Base>

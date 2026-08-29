@@ -1,0 +1,11 @@
+---
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<!-- FSA monogram: an ascending mark inside a ring. -->
+<svg class={cls} viewBox="0 0 40 40" fill="none" aria-hidden="true">
+  <circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1.4" opacity="0.28" />
+  <path d="M11 25.5 L17 19 L22 23 L29.5 13.5" stroke="var(--brass)" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="29.5" cy="13.5" r="2.6" fill="var(--brass)" />
+</svg>

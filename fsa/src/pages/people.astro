@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Person from '../components/Person.astro';
+
+const team = await getCollection('team');
+const executive = team.filter((m) => m.data.group === 'executive');
+const directors = team.filter((m) => m.data.group === 'directors');
+const year = new Date().getFullYear();
+---
+
+<Base
+  title="Our People"
+  description="The elected committee running the Finance Students' Association at the University of Melbourne."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Our people</span>
+    <h1 class="d2">The {year} committee.</h1>
+    <p class="lede">
+      Elected by members at the AGM, and responsible for everything from the
+      events calendar to the partnerships that fund it. Say hello at any event —
+      that is genuinely the fastest way in.
+    </p>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="shell stack-22">
+      <span class="eyebrow">Executive</span>
+      <div class="grid g-4">
+        {executive.map((m) => (
+          <Person name={m.data.name} role={m.data.role} photo={m.data.photo} linkedin={m.data.linkedin} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="shell stack-22">
+      <span class="eyebrow">Directors</span>
+      <div class="grid g-4">
+        {directors.map((m) => (
+          <Person name={m.data.name} role={m.data.role} photo={m.data.photo} linkedin={m.data.linkedin} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="shell">
+      <div class="cta">
+        <div class="stack-14">
+          <span class="eyebrow">Committee</span>
+          <h2 class="d2">Want a seat at this table?</h2>
+          <p class="lede" style="max-width:52ch;">
+            Committee applications open once a year. You do not need prior club
+            experience — you need to be reliable and to care about the outcome.
+          </p>
+        </div>
+        <div class="hero-cta">
+          <a href="/committee" class="btn btn-brass">How to apply <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

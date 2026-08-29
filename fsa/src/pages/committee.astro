@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import { contact } from '../data/site';
+
+const portfolios = [
+  { t: 'Operations', b: 'Own the events themselves — venues, run sheets, ticketing and the night-of logistics that make an evening land.' },
+  { t: 'Sponsorships', b: 'Build and hold the firm relationships that fund the calendar, from first outreach to renewal.' },
+  { t: 'Marketing', b: 'Voice, design and the channels. Everything a member sees before they walk in the door.' },
+  { t: 'Education', b: 'Run the revision programme: workshop content, tutors, and the study group structure.' },
+  { t: 'Careers', b: 'Curate the industry programme — panels, insight evenings and the application support around them.' },
+  { t: 'Executive', b: 'President, Vice President, Treasurer and Secretary. Elected directly by members at the AGM.' },
+];
+---
+
+<Base
+  title="Join the Committee"
+  description="Committee roles at the Finance Students' Association, University of Melbourne — portfolios, how elections work, and how to apply."
+>
+  <section class="shell pagehead">
+    <span class="eyebrow">Committee</span>
+    <h1 class="d2">Build the thing, don&rsquo;t just attend it.</h1>
+    <p class="lede">
+      Committee is where FSA actually gets made. It is real work — budgets,
+      sponsors, run sheets, a room of two hundred people expecting a good
+      night — and it is the most transferable experience the club offers.
+    </p>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="shell">
+      <div class="grid g-3">
+        {portfolios.map((p) => (
+          <article class="card card-hover reveal">
+            <h3 class="d3">{p.t}</h3>
+            <p>{p.b}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight section-alt">
+    <div class="shell shell-narrow">
+      <h2 class="d2" style="margin-bottom:26px;">How it works</h2>
+      <div>
+        <div class="contact-item">
+          <h3>Executive roles are elected</h3>
+          <p>
+            President, Vice President, Treasurer and Secretary are elected by
+            members at the Annual General Meeting. You must be a current member
+            to nominate or to vote.
+          </p>
+        </div>
+        <div class="contact-item">
+          <h3>Director roles are appointed</h3>
+          <p>
+            Portfolio directors are appointed by the incoming executive shortly
+            after the AGM, through a written application and a short interview.
+          </p>
+        </div>
+        <div class="contact-item">
+          <h3>No prior experience needed</h3>
+          <p>
+            Most of our committee had never run a club before. What matters is
+            that you follow through on what you take on.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-cta" style="margin-top:32px;">
+        <a href={`mailto:${contact.general}?subject=Committee%20application`} class="btn btn-brass">
+          Register your interest <span class="arw">&rarr;</span>
+        </a>
+        <a href="/people" class="btn btn-ghost">Meet the current committee</a>
+      </div>
+    </div>
+  </section>
+</Base>

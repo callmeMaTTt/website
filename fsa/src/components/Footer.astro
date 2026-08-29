@@ -1,0 +1,71 @@
+---
+import Logo from './Logo.astro';
+import Social from './Social.astro';
+import { site, contact } from '../data/site';
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: 'The club',
+    links: [
+      { href: '/about', label: 'About FSA' },
+      { href: '/people', label: 'Our people' },
+      { href: '/committee', label: 'Join the committee' },
+    ],
+  },
+  {
+    title: 'Get involved',
+    links: [
+      { href: '/events', label: 'Events' },
+      { href: '/join', label: 'Become a member' },
+      { href: '/sponsors', label: 'Partner with us' },
+    ],
+  },
+  {
+    title: 'Contact',
+    links: [
+      { href: `mailto:${contact.general}`, label: 'General enquiries' },
+      { href: `mailto:${contact.sponsorship}`, label: 'Sponsorship' },
+      { href: '/contact', label: 'Contact page' },
+    ],
+  },
+];
+---
+
+<footer class="ftr">
+  <div class="shell">
+    <div class="ftr-in">
+      <div class="stack-14">
+        <a href="/" class="brand" aria-label={`${site.name} — home`}>
+          <Logo class="brand-mark" />
+          <span class="brand-txt">
+            <b>FSA</b>
+            <span>Unimelb</span>
+          </span>
+        </a>
+        <p style="font-size:0.92rem; max-width:34ch;">
+          {site.name}, a student club of the {site.university}. Building the bridge
+          between finance study and the profession since {site.founded}.
+        </p>
+        <Social />
+      </div>
+
+      {columns.map((col) => (
+        <div>
+          <h4>{col.title}</h4>
+          <ul>
+            {col.links.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="ftr-btm">
+      <span>&copy; {year} {site.name}. All rights reserved.</span>
+      <span>Affiliated with UMSU, {site.university}.</span>
+    </div>
+  </div>
+</footer>
