@@ -1,0 +1,7 @@
+# credentials and run state — never commit these
+browser.json
+oauth.json
+.state/
+.cache*
+.venv/
+__pycache__/
